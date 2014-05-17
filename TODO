@@ -1,0 +1,182 @@
+PHP CMS
+=======
+
+The idea is to store everything in the filesystem and just cache everything instead?
+
+- Heavy use of YAML inheritance
+- Page meta data...
+- Collections should be usable in configs (see authentication)
+- Allow building webservice api's?
+- Files meta data?
+- Tags for embedding other nodes and collections in nodes and layouts
+- Weight
+- Revisions come from source control...
+
+Folder Structure
+----------------
+
+public/
+  index.php
+  assets -> /assets
+  files/
+    default -> /files/default
+
+config/
+  application.yml
+  image_styles.yml
+  redirects.yml
+  languages.yml
+  locale.yml
+  permissions.yml
+  groups.yml
+  fields/
+    text.yml
+    title.yml (text)
+    link.yml
+    date.yml
+    period.yml
+    node.yml
+    collection.yml
+    file.yml
+    image.yml (file)
+    400x400.yml (image)
+  types/
+    user.yml
+    article.yml
+    tutorial.yml (article)
+    comment.yml
+    quote.yml
+    event.yml
+    learn/
+      module.yml
+      lesson.yml
+  menus/
+    main.yml
+  collections/
+    articles.yml
+    latest_articles.yml
+    active_users.yml
+
+nodes/
+  users/
+    1.md
+    2.md
+  articles/
+    how-to-use-php-cms.en.md
+    creating-a-node/en.md
+    creating-a-node/dk.md
+  comments/
+    how-to-use-php-cms/
+    creating-a-node/
+      1.md
+      2.md
+      3.md
+  quotes/
+    martin-vium-1.md
+  events/
+    some-event-in-russia-2014-05-01.md
+  promotion/
+    some-event-in-russia.md
+    my-product-is-awesome.md
+
+files/
+  default/
+    file.zip
+    file.jpg
+  promotions/
+    an-image.png
+
+views/
+  layouts/
+    main.html.twig
+    secondary.html.twig
+
+plugins/
+core/plugins/
+  menu/
+    menu.yml
+    menu.php
+    menu.html.twig
+
+assets/
+  css/
+  js/
+  images/
+
+Example Field (file.yml)
+------------------------
+*text
+title: File
+
+
+Example Field (image.yml)
+-------------------------
+*file
+title: Image
+
+
+Example Field (400x400.yml)
+---------------------------
+*image
+title: Image with dimensions 400x400
+
+
+Example Type (article.yml)
+--------------------------
+title: Article
+fields:
+  -
+    title: Some line
+    field: text
+  - 
+    title: Banner
+    field: 400x400
+  - 
+    title: Banner2
+    field: image
+    options: {
+      width: 200
+      height: 200
+    }
+
+Example Article (how-to-use-php-cms.en.md)
+------------------------------------------
+title: How to use PHP CMS
+published: true
+author: node:users/abcde
+path: tutorials/:name
+created: 2014..
+---
+This is some content which is awesome and supports markdown or textile...
+
+It is in english?
+
+Example Menu (main.yml)
+-----------------------
+- 
+  title: Home
+  path: ~
+- 
+  title: Webshop
+  path: ://store.example.com/sub
+- 
+  title: Articles
+  path: articles
+  children:
+    collection: latest_articles
+
+Example Collection (articles.yml)
+---------------------------------
+order: created asc
+filters:
+  type: article
+limit: 200 (useful when embedding collections e.g. in menu or a block)
+paging:
+  size: 50
+view: layouts/collections/article.html.twig
+
+Example Config (application.yml)
+--------------------------------
+title: My App
+authentication:
+  collection: active_users
