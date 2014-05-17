@@ -46,85 +46,85 @@ Getting Started
 Folder Structure
 ----------------
 
-public/
-  index.php
-  assets -> /assets
-  files/
-    default -> /files/default
+  public/
+    index.php
+    assets -> /assets
+    files/
+      default -> /files/default
 
-config/
-  application.yml
-  image_styles.yml
-  redirects.yml
-  languages.yml
-  locale.yml
-  permissions.yml
-  groups.yml
-  types/
-    user.yml
-    article.yml
-    tutorial.yml (article)
-    comment.yml
-    quote.yml
-    event.yml
-    learn/
-      module.yml
-      lesson.yml
-  menus/
-    main.yml
-  collections/
-    articles.yml
-    latest_articles.yml
-    active_users.yml
+  config/
+    application.yml
+    image_styles.yml
+    redirects.yml
+    languages.yml
+    locale.yml
+    permissions.yml
+    groups.yml
+    types/
+      user.yml
+      article.yml
+      tutorial.yml (article)
+      comment.yml
+      quote.yml
+      event.yml
+      learn/
+        module.yml
+        lesson.yml
+    menus/
+      main.yml
+    collections/
+      articles.yml
+      latest_articles.yml
+      active_users.yml
 
-nodes/
-  users/
-    1.md
-    2.md
-  articles/
-    how-to-use-php-cms.en.md
-    creating-a-node/en.md
-    creating-a-node/dk.md
-  comments/
-    how-to-use-php-cms/
-    creating-a-node/
+  nodes/
+    users/
       1.md
       2.md
-      3.md
-  quotes/
-    martin-vium-1.md
-  events/
-    some-event-in-russia-2014-05-01.md
-  promotion/
-    some-event-in-russia.md
-    my-product-is-awesome.md
+    articles/
+      how-to-use-php-cms.en.md
+      creating-a-node/en.md
+      creating-a-node/dk.md
+    comments/
+      how-to-use-php-cms/
+      creating-a-node/
+        1.md
+        2.md
+        3.md
+    quotes/
+      martin-vium-1.md
+    events/
+      some-event-in-russia-2014-05-01.md
+    promotion/
+      some-event-in-russia.md
+      my-product-is-awesome.md
 
-files/
-  default/
-    file.zip
-    file.jpg
-  promotions/
-    an-image.png
+  files/
+    default/
+      file.zip
+      file.jpg
+    promotions/
+      an-image.png
 
-views/
-  layouts/
-    main.html.twig
-    secondary.html.twig
-  types/
-    article.html.twig
-  collections/ (?)
-    article.html.twig
+  views/
+    layouts/
+      main.html.twig
+      secondary.html.twig
+    types/
+      article.html.twig
+    collections/ (?)
+      article.html.twig
 
-plugins/
-core/plugins/
-  menu/
-    menu.yml
-    menu.php
-    menu.html.twig
+  plugins/
+  core/plugins/
+    menu/
+      menu.yml
+      menu.php
+      menu.html.twig
 
-assets/
-  css/
-  js/
-  images/
+  assets/
+    css/
+    js/
+    images/
 
 [Examples](EXAMPLES.md)
