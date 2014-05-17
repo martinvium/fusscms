@@ -10,9 +10,10 @@ class NodeController extends Controller
     {
         $filename = $this->get('kernel')->getRootDir() . '/nodes/articles/' . $slug . '.md';
         $text = file_get_contents($filename);
-        $html = $this->container->get('markdown.parser')->transformMarkdown($text);
+        $node = $this->container->get('node.parser')->parseNode($text);
+        
         return $this->render('FussCMSBundle:Node:show.html.twig', array(
-          'node_content' =>  $html
+          'node_content' =>  $node->getBody()
         ));
     }
 }
