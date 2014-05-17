@@ -9,8 +9,39 @@ The idea is to store everything in the filesystem and just cache everything inst
 - Allow building webservice api's?
 - Files meta data?
 - Tags for embedding other nodes and collections in nodes and layouts
-- Weight
+- Weight...
 - Revisions come from source control...
+- Field processors can expose options in a namespace of the same name
+- Built in node fields
+  - title
+  - path
+  - created
+  - published
+  - weight (not required until collections)
+  - author? (should maybe be a regular field... however there could be permission related problems?)
+
+Getting Started
+---------------
+
+- Locate content in nodes/ relative to url
+- Parse .md files
+- Expose parsed body to the views
+- Read yml header
+- Expose "title" to the layout/views
+- Hook path field into router?
+- Throw error for unknown elements in yml part of .md
+- Allow translations based on 2nd level file extension
+- Load type def based on the type option in .md
+- Implement image field type...
+  - Field processor
+  - Allow namespace in yml part of .md based on processor
+  - Throw error if file referenced is invalid based on options (mime, dimensions)
+  - Expose field to view if valid
+- Menu?
+- Implement other fields?
+- Allow embedding fields in markdown
+- Types inheritance?
+- Allow specifying view
 
 Folder Structure
 ----------------
@@ -29,17 +60,6 @@ config/
   locale.yml
   permissions.yml
   groups.yml
-  fields/
-    text.yml
-    title.yml (text)
-    link.yml
-    date.yml
-    period.yml
-    node.yml
-    collection.yml
-    file.yml
-    image.yml (file)
-    400x400.yml (image)
   types/
     user.yml
     article.yml
@@ -90,6 +110,10 @@ views/
   layouts/
     main.html.twig
     secondary.html.twig
+  types/
+    article.html.twig
+  collections/ (?)
+    article.html.twig
 
 plugins/
 core/plugins/
@@ -103,30 +127,12 @@ assets/
   js/
   images/
 
-Example Field (file.yml)
-------------------------
-*text
-title: File
-
-
-Example Field (image.yml)
--------------------------
-*file
-title: Image
-
-
-Example Field (400x400.yml)
----------------------------
-*image
-title: Image with dimensions 400x400
-
-
 Example Type (article.yml)
 --------------------------
 title: Article
 fields:
   -
-    title: Some line
+    title: Some text field
     field: text
   - 
     title: Banner
@@ -134,18 +140,27 @@ fields:
   - 
     title: Banner2
     field: image
-    options: {
+    image:
       width: 200
       height: 200
-    }
+  - 
+    title: Attachment
+    count: 1 (default), 0 (infinite), n (custom)
+    field: file
+    file:
+      mimes:
+        application/zip
+      extensions: 7z
 
 Example Article (how-to-use-php-cms.en.md)
 ------------------------------------------
 title: How to use PHP CMS
+type: article
 published: true
 author: node:users/abcde
 path: tutorials/:name
 created: 2014..
+banner: path/to/image.png
 ---
 This is some content which is awesome and supports markdown or textile...
 
