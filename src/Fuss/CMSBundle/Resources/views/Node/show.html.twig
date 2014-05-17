@@ -1,8 +1,7 @@
 {% extends 'FussCMSBundle::layout.html.twig' %}
 
-{% block title %}Node{% endblock %}
-
-{% block content_header '' %}
+{% block title node_title %}
+{% block content_header node_title %}
 
 {% block content %}
     {{ node_content | raw }}
