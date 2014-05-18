@@ -17,26 +17,25 @@ The idea is to store everything in the filesystem and just cache everything inst
   - path
   - created
   - published
+  - layout (override default layout)
+  - view (override node view)
   - weight (not required until collections)
   - author? (should maybe be a regular field... however there could be permission related problems?)
 
 Getting Started
 ---------------
 
-- Locate content in nodes/ relative to url
-- Parse .md files
-- Expose parsed body to the views
-- Read yml header
-- Expose "title" to the layout/views
-- Hook path field into router?
-- Throw error for unknown elements in yml part of .md
+- Customize layout
+- Customize view
 - Allow translations based on 2nd level file extension
+- Throw error for unknown elements in yml part of .md
 - Load type def based on the type option in .md
 - Implement image field type...
   - Field processor
   - Allow namespace in yml part of .md based on processor
   - Throw error if file referenced is invalid based on options (mime, dimensions)
   - Expose field to view if valid
+- Hook path field into router?
 - Menu?
 - Implement other fields?
 - Allow embedding fields in markdown

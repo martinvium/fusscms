@@ -8,18 +8,22 @@ Example Type (article.yml)
 title: Article
 fields:
   -
+    name: some_field
     title: Some text field
     field: text
   - 
+    name: banner1
     title: Banner
     field: 400x400
   - 
+    name: banner2
     title: Banner2
     field: image
     image:
       width: 200
       height: 200
   - 
+    name: attachments
     title: Attachment
     count: 1 (default), 0 (infinite), n (custom)
     field: file
@@ -39,7 +43,9 @@ published: true
 author: node:users/abcde
 path: tutorials/:name
 created: 2014..
-banner: path/to/image.png
+some_field: some data
+banner: 
+  value: [Alt](path/to/image.png)
 ---
 This is some content which is awesome and supports markdown or textile...
 

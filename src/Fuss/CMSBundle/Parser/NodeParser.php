@@ -3,22 +3,27 @@
 namespace Fuss\CMSBundle\Parser;
 
 use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
-use Fuss\CMSBundle\Models\Node;
+use Fuss\CMSBundle\Model\Node;
 use Symfony\Component\Yaml\Yaml;
 
 class NodeParser
 {
     private $markdownParser;
 
-    public function __construct(MarkdownParserInterface $parser) {
+    public function __construct(MarkdownParserInterface $parser) 
+    {
         $this->markdownParser = $parser;
     }
 
     /**
-     * @param string $text raw file contents must contain yml headers and markdown body
+     * @param string $filename
+     * @throws Exception when node content is invalid
      * @return Node
      */
-    public function parseNode($text) {
+    public function fileParseNode($filename) 
+    {
+        $text = file_get_contents($filename);
+
         if(!strpos($text, '---')) {
             throw new \Exception('failed to parse node, missing header section');
         }
@@ -35,7 +40,8 @@ class NodeParser
         return $node;
     }
 
-    private function parseFields($headers) {
+    private function parseFields($headers) 
+    {
       return Yaml::parse($headers);
     }
 }
